@@ -1,5 +1,3 @@
-# Quality Assurance
+# Quality Assurance with Chai
 
-Quality Assurance Certification from FreeCodeCamp
-
-https://www.freecodecamp.org/learn/quality-assurance
+This is the boilerplate for the Quality Assurance with Chai lessons. Instructions for completing these lessons start at https://www.freecodecamp.org/learn/quality-assurance/quality-assurance-and-testing-with-chai/
