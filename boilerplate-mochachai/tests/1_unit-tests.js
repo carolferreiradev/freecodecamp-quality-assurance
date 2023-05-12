@@ -9,76 +9,80 @@ suite('Unit Tests', function () {
       assert.isNotNull(1, '1 is not null');
     });
     // #2
-    // test('#isDefined, #isUndefined', function () {
-    //   assert.fail(null, 'null is not undefined');
-    //   assert.fail(undefined, 'undefined IS undefined');
-    //   assert.fail('hello', 'A string is not undefined');
-    // });
-    // // #3
-    // test('#isOk, #isNotOk', function () {
-    //   assert.fail(null, 'null is falsey');
-    //   assert.fail("I'm truthy", 'A string is truthy');
-    //   assert.fail(true, 'true is truthy');
-    // });
-    // // #4
-    // test('#isTrue, #isNotTrue', function () {
-    //   assert.fail(true, 'true is true');
-    //   assert.fail(!!'double negation', 'Double negation of a truthy value is true');
-    //   assert.fail({ value: 'truthy' }, 'Objects are truthy, but are not boolean values');
-    // });
+    test('#isDefined, #isUndefined', function () {
+      assert.isDefined(null, 'null is not undefined');
+      assert.isUndefined(undefined, 'undefined IS undefined');
+      assert.isDefined('hello', 'A string is not undefined');
+    });
+    // #3
+    test('#isOk, #isNotOk', function () {
+      assert.isNotOk(null, 'null is falsey');
+      assert.isOk("I'm truthy", 'A string is truthy');
+      assert.isOk(true, 'true is truthy');
+    });
+    // #4
+    test('#isTrue, #isNotTrue', function () {
+      assert.isTrue(true, 'true is true');
+      assert.isTrue(!!'double negation', 'Double negation of a truthy value is true');
+      assert.isNotTrue({ value: 'truthy' }, 'Objects are truthy, but are not boolean values');
+    });
   });
 
   // -----------------------------------------------------------------------------
 
-  // suite('Equality', function () {
-  //   // #5
-  //   test('#equal, #notEqual', function () {
-  //     assert.fail(12, '12', 'Numbers are coerced into strings with ==');
-  //     assert.fail({ value: 1 }, { value: 1 }, '== compares object references');
-  //     assert.fail(6 * '2', '12');
-  //     assert.fail(6 + '2', '12');
-  //   });
-  //   // #6
-  //   test('#strictEqual, #notStrictEqual', function () {
-  //     assert.fail(6, '6');
-  //     assert.fail(6, 3 * 2);
-  //     assert.fail(6 * '2', 12);
-  //     assert.fail([1, 'a', {}], [1, 'a', {}]);
-  //   });
-  //   // #7
-  //   test('#deepEqual, #notDeepEqual', function () {
-  //     assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
-  //     assert.fail({ a: [5, 6] }, { a: [6, 5] }, 'The order of array elements does matter');
-  //   });
-  // });
+  suite('Equality', function () {
+    // #5
+    test('#equal, #notEqual', function () {
+      assert.equal(12, '12', 'Numbers are coerced into strings with ==');
+      assert.notEqual({ value: 1 }, { value: 1 }, '== compares object references');
+      assert.equal(6 * '2', '12');
+      assert.notEqual(6 + '2', '12');
+    });
+    // #6
+    test('#strictEqual, #notStrictEqual', function () {
+      assert.notStrictEqual(6, '6');
+      assert.strictEqual(6, 3 * 2);
+      assert.strictEqual(6 * '2', 12);
+      assert.notStrictEqual([1, 'a', {}], [1, 'a', {}]);
+    });
+    // #7
+    test('#deepEqual, #notDeepEqual', function () {
+      assert.deepEqual({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+      assert.notDeepEqual({ a: [5, 6] }, { a: [6, 5] }, 'The order of array elements does matter');
+    });
+  });
 
   // -----------------------------------------------------------------------------
 
-  // function weirdNumbers(delta) {
-  //   return 1 + delta - Math.random();
-  // }
+  function weirdNumbers(delta) {
+    return 1 + delta - Math.random();
+  }
 
-  // suite('Comparisons', function () {
-  //   // #8
-  //   test('#isAbove, #isAtMost', function () {
-  //     assert.fail('hello'.length, 5);
-  //     assert.fail(1, 0);
-  //     assert.fail(Math.PI, 3);
-  //     assert.fail(1 - Math.random(), 1);
-  //   });
-  //   // #9
-  //   test('#isBelow, #isAtLeast', function () {
-  //     assert.fail('world'.length, 5);
-  //     assert.fail(2 * Math.random(), 0);
-  //     assert.fail(5 % 2, 2);
-  //     assert.fail(2 / 3, 1);
-  //   });
-  //   // #10
-  //   test('#approximately', function () {
-  //     assert.fail(weirdNumbers(0.5), 1, 0);
-  //     assert.fail(weirdNumbers(0.2), 1, 0);
-  //   });
-  // });
+  suite('Comparisons', function () {
+    // #8
+    // isAbove >
+    // isAtMost <=
+    test('#isAbove, #isAtMost', function () {
+      assert.isAtMost('hello'.length, 5);
+      assert.isAbove(1, 0);
+      assert.isAbove(Math.PI, 3);
+      assert.isAtMost(1 - Math.random(), 1);
+    });
+    // #9
+    // isBelow <
+    // isAtLeast >=
+    test('#isBelow, #isAtLeast', function () {
+      assert.isAtLeast('world'.length, 5);
+      assert.isAtLeast(2 * Math.random(), 0);
+      assert.isBelow(5 % 2, 2);
+      assert.isBelow(2 / 3, 1);
+    });
+    // // #10
+    // test('#approximately', function () {
+    //   assert.approximately(weirdNumbers(0.5), 1, 0);
+    //   assert.approximately(weirdNumbers(0.2), 1, 0);
+    // });
+  });
 
   // -----------------------------------------------------------------------------
 
